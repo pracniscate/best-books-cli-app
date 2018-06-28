@@ -28,11 +28,17 @@ class BestBooks::CLI
   def books_by_editors
     puts "Best Novels Selected by Editors:"
     @books = BestBooks::EditorsBooks.name
+    @books.each.with_index(1) do |book, i|
+      puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
+    end
   end
 
   def books_by_readers
     puts "Best Books Selected by Readers:"
     @books = BestBooks::ReadersBooks.name
+    @books.each.with_index(1) do |book, i|
+      puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
+    end
   end
 
   def menu
