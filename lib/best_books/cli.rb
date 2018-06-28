@@ -27,12 +27,12 @@ class BestBooks::CLI
 
   def books_by_editors
     puts "Best Novels Selected by Editors:"
-    @books = BestBooks::EditorsBooks.title
+    @books = BestBooks::EditorsBooks.name
   end
 
   def books_by_readers
     puts "Best Books Selected by Readers:"
-    @books = BestBooks::ReadersBooks.title
+    @books = BestBooks::ReadersBooks.name
   end
 
   def menu
@@ -40,12 +40,11 @@ class BestBooks::CLI
     while input != "exit"
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "Description of book 1..."
-      when "2"
-        puts "Description of book 2..."
-      when "list"
+
+      # wire up the menu with conditional logic to work with the arrays of books
+      if input.to_i > 0
+        puts @books[input.to_i - 1]
+      elsif input == "list"
         editors_or_readers
       else
         puts "This is confusing. Type 'list' or 'exit' or enter the number of the book you'd like to preview:"
