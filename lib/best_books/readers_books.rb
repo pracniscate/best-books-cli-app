@@ -2,10 +2,10 @@ class BestBooks::ReadersBooks
   attr_accessor :title, :author, :price, :url
 
   def self.name
-    puts <<-DOC.gsub /^\s*/, ''
-      1. Parade's End by Ford Madox Ford - $13.68
-      2. The Princess Bride by William Goldman - $7.82
-    DOC
+    # puts <<-DOC.gsub /^\s*/, ''
+    #   1. Parade's End by Ford Madox Ford - $13.68
+    #   2. The Princess Bride by William Goldman - $7.82
+    # DOC
     book_1 = self.new
     book_1.title = "Parade's End"
     book_1.author = "Ford Madox Ford"
