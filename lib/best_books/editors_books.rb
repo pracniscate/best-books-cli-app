@@ -1,4 +1,5 @@
 class BestBooks::EditorsBooks
+  attr_accessor :title, :author, :price, :url
 
   def self.title
     # return a bunch of instances of titles
