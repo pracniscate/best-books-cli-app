@@ -6,12 +6,11 @@ require "best_books/version"
 Gem::Specification.new do |spec|
   spec.name          = "best_books"
   spec.version       = BestBooks::VERSION
-  spec.authors       = ["'Lorena'"]
+  spec.authors       = ["'Lorena Giddens'"]
   spec.email         = ["'lorena.giddens@outlook.com'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{This gem allows you to search for best books in a list compiled by editors or another list compiled by readers.}
+  spec.homepage      = "https://github.com/pracniscate/best-books-cli-app.git"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
