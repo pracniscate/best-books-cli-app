@@ -15,38 +15,32 @@ class BestBooks::CLI
     input = nil
     puts "Which list would you like to access? Type 'editors' or 'readers'."
     input = gets.strip.downcase
-    case input 
+    case input
     when "editors"
       books_by_editors
     when "readers"
       books_by_readers
-    else 
+    else
       puts "Didn't get that! Please choose between 'editors' or 'readers', and you will be presented with a book list."
     end
   end
 
   def books_by_editors
     puts "Best Novels Selected by Editors:"
-    puts <<-DOC.gsub /^\s*/, ''
-      1. One Hundred Years of Solitude by Gabriel Garcia Marquez - $10.04
-      2. Tender is the Night by F.Scott Fitzgerald - $16.54
-    DOC
-  end 
+    @books = BestBooks::EditorsBooks.title
+  end
 
   def books_by_readers
     puts "Best Books Selected by Readers:"
-    puts <<-DOC.gsub /^\s*/, ''
-      1. Parade's End by Ford Madox Ford - $13.68
-      2. The Princess Bride by William Goldman - $7.82
-    DOC
+    @books = BestBooks::ReadersBooks.title
   end
 
-  def menu 
+  def menu
     input = nil
     while input != "exit"
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
       input = gets.strip.downcase
-      case input 
+      case input
       when "1"
         puts "Description of book 1..."
       when "2"
@@ -59,7 +53,7 @@ class BestBooks::CLI
     end
   end
 
-  def goodbye 
+  def goodbye
     puts "See you soon! Enjoy reading your book."
   end
 end
