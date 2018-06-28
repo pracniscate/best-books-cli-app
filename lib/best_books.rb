@@ -1,5 +1,2 @@
-require "best_books/version"
-
-module BestBooks
-  # Your code goes here...
-end
+require_relative "best_books/version"
+require_relative "./best_books/cli" # loads BestBooks::CLI class
