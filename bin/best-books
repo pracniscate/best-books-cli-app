@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+BestBooks::CLI.new.call
