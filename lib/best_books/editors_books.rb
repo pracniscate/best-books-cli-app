@@ -1,7 +1,7 @@
 class BestBooks::EditorsBooks
   attr_accessor :title, :author, :price, :url
 
-  def self.title
+  def self.name
     # return a bunch of instances of titles
     puts <<-DOC.gsub /^\s*/, ''
       1. One Hundred Years of Solitude by Gabriel Garcia Marquez - $10.04
@@ -18,6 +18,8 @@ class BestBooks::EditorsBooks
     book_2.author = "F.Scott Fitzgerald"
     book_2.price = "$16.54"
     book_2.url = "https://www.bookdepository.com/Tender-is-Night-F-Scott-Fitzgerald/9780141194066"
+
+    [book_1, book_2]
   end
 
 end
