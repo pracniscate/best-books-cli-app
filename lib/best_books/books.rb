@@ -3,7 +3,13 @@ class BestBooks::Books
 
   def self.best
     # scrape both lists on Book Depository and then return deals based on that data
-  end 
+    input = gets.strip.downcase
+    if input == "editors"
+      self.scrape_editors
+    elsif input == "readers"
+      self.scrape_readers
+    end
+  end
 
   def self.scrape_editors
     book_1 = self.new
@@ -11,7 +17,7 @@ class BestBooks::Books
     book_1.author = "Gabriel Garcia Marquez"
     book_1.price = "$10.04"
     book_1.url = "https://www.bookdepository.com/One-Hundred-Years-Solitude-Gabriel-Garcia-Marquez/9780141184999"
-    
+
     book_2 = self.new
     book_2.title = "Tender is the Night"
     book_2.author = "F.Scott Fitzgerald"
@@ -20,7 +26,7 @@ class BestBooks::Books
 
     [book_1, book_2]
   end
-  
+
   def self.scrape_readers
     book_1 = self.new
     book_1.title = "Parade's End"

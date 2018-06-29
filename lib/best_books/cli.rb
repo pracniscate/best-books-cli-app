@@ -27,15 +27,15 @@ class BestBooks::CLI
 
   def books_by_editors
     puts "Best Novels Selected by Editors:"
-    @books = BestBooks::EditorsBooks.name
+    @books = BestBooks::Books.scrape_editors
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
     end
   end
 
   def books_by_readers
-    puts "Best Books Selected by Readers:"
-    @books = BestBooks::ReadersBooks.name
+    puts "Best Novels Selected by Readers:"
+    @books = BestBooks::Books.scrape_readers
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
     end
@@ -54,7 +54,7 @@ class BestBooks::CLI
       elsif input == "list"
         editors_or_readers
       else
-        puts "This is confusing. Type 'list' or 'exit' or enter the number of the book you'd like to preview:"
+        puts "This is confusing. Try again."
       end
     end
   end
