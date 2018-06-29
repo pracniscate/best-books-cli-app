@@ -49,8 +49,7 @@ class BestBooks::CLI
 
       # wire up the menu with conditional logic to work with the arrays of books
       if input.to_i > 0
-        the_book = @books[input.to_i - 1]
-        puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
+        puts @books[input.to_i - 1]
       elsif input == "list"
         editors_or_readers
       else
