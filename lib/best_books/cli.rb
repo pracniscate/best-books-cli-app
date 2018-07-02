@@ -1,6 +1,8 @@
+require 'pry'
 class BestBooks::CLI
 
   def call
+    binding.pry
     welcome
     editors_or_readers
     menu
@@ -23,6 +25,22 @@ class BestBooks::CLI
     else
       puts "Didn't get that! Please choose between 'editors' or 'readers', and you will be presented with a book list."
     end
+  end
+
+  def play
+    input = nil
+
+    while(input != 'exit')
+      menu()
+      input = gets.strip
+      selection(input)
+    end
+
+    puts "That's the end!!"
+  end
+
+  def menu
+    Book.display_menu()
   end
 
   def books_by_editors

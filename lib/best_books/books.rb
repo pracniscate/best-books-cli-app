@@ -1,5 +1,13 @@
 class BestBooks::Books
   attr_accessor :title, :author, :price, :url
+  @@all = []
+
+  def initialize(obj)
+    @title = title
+  end
+
+  def display_menu
+  end
 
   def self.best
     # scrape both lists on Book Depository and then return deals based on that data
