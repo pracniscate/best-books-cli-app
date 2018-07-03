@@ -7,6 +7,16 @@ class BestBooks::Books
 
   def initialize(obj)
     @title = title
+    @author = author
+    @price = price
+    @url = url
+
+    if self.list == "editors"
+      @@all_editors << self
+    elsif self.list == "readers"
+      @@all_readers == << self
+    end
+    @@all << self
   end
 
   def self.all

@@ -15,13 +15,24 @@ class BestBooks::CLI
     input = nil
     puts "Which list would you like to access? Type 'editors' or 'readers'."
     input = gets.strip.downcase
+
     case input
     when "editors"
-      books_by_editors
+      show_list("editors")
     when "readers"
-      books_by_readers
+      show_list("readers")
     else
       puts "Didn't get that! Please choose between 'editors' or 'readers', and you will be presented with a book list."
+    end
+  end
+
+  def show_list(list)
+    if list == "editors"
+      puts "You have accessed the best book list created by the editors:"
+      # loop through the list
+    elsif list == "readers"
+      puts "You have accessed the best book list created by readers like you:"
+      # loop through the list
     end
   end
 
@@ -39,22 +50,6 @@ class BestBooks::CLI
 
   def menu
     Book.display_menu()
-  end
-
-  def books_by_editors
-    puts "Best Novels Selected by Editors:"
-    @books = BestBooks::Books.scrape_editors
-    @books.each.with_index(1) do |book, i|
-      puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
-    end
-  end
-
-  def books_by_readers
-    puts "Best Novels Selected by Readers:"
-    @books = BestBooks::Books.scrape_readers
-    @books.each.with_index(1) do |book, i|
-      puts "#{i}. #{book.title} by #{book.author} - #{book.price}"
-    end
   end
 
   def menu
