@@ -1,8 +1,6 @@
-require 'pry'
 class BestBooks::CLI
 
   def call
-    binding.pry
     welcome
     editors_or_readers
     menu
