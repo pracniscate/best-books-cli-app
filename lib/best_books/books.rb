@@ -2,8 +2,6 @@ class BestBooks::Books
   attr_accessor :title, :author, :price, :url
 
   @@all = []
-  @@all_editors = []
-  @@all_readers = []
 
   def initialize(obj)
     @title = title
@@ -11,11 +9,6 @@ class BestBooks::Books
     @price = price
     @url = url
 
-    if self.list == "editors"
-      @@all_editors << self
-    elsif self.list == "readers"
-      @@all_readers << self
-    end
     @@all << self
   end
 
@@ -32,15 +25,15 @@ class BestBooks::Books
     @@all
   end
 
-  def self.all_editors
-    @@all_editors
+  def self.editors
+    @@all.select {|book| book.list == "editors"}
   end
 
-  def self.all_readers
-    @@all_readers
+  def self.readers
+    @@all.select {|book| book.list == "readers"}
   end
 
-  def display_menu
-  end
+  # def display_menu
+  # end
 
 end
