@@ -18,3 +18,5 @@ class BestBooks::Scraper
     end
   end
 end
+
+Scraper.new.initialize

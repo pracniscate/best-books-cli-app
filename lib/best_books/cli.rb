@@ -28,11 +28,15 @@ class BestBooks::CLI
 
   def show_list(list)
     if list == "editors"
-      puts "You have accessed the best book list created by the editors:"
-      # loop through the list
+      puts "Best Novels of All Time by Our Editors:"
+      BestBooks::Books.editors.each do |book|
+        puts "#{book.title} by #{book.author} - #{the_book.price}"
+      end
     elsif list == "readers"
-      puts "You have accessed the best book list created by readers like you:"
-      # loop through the list
+      puts "Top-choice Books by Our Customers:"
+      BestBooks::Books.readers.each do |book|
+        puts "#{book.title} by #{book.author} - #{the_book.price}"
+      end
     end
   end
 

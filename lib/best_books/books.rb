@@ -25,6 +25,7 @@ class BestBooks::Books
     @@all
   end
 
+  # separate two different lists and keep track of them
   def self.editors
     @@all.select {|book| book.list == "editors"}
   end
