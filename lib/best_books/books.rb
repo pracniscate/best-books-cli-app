@@ -14,9 +14,18 @@ class BestBooks::Books
     if self.list == "editors"
       @@all_editors << self
     elsif self.list == "readers"
-      @@all_readers == << self
+      @@all_readers << self
     end
     @@all << self
+  end
+
+  def self.create_from_collection(book_array)
+    book_array.each {|book| self.new(book)}
+  end
+
+  def attributes(attribute_hash)
+    # mass assign attributes
+    attribute_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
   def self.all
