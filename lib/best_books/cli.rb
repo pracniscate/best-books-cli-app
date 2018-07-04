@@ -36,6 +36,15 @@ class BestBooks::CLI
     end
   end
 
+  def new_books
+    # scrape books from the website
+    books = BestBooks::Scraper.scrape_books
+    # then, create an array of books
+    BestBooks::Books.create_from_collection(book_array)
+  end
+
+  # give books attributes
+
   def play
     input = nil
 
