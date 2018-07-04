@@ -45,21 +45,21 @@ class BestBooks::CLI
 
   # give books attributes
 
-  def play
-    input = nil
+  # def play
+  #   input = nil
+  #
+  #   while(input != 'exit')
+  #     menu()
+  #     input = gets.strip
+  #     selection(input)
+  #   end
+  #
+  #   puts "That's the end!!"
+  # end
 
-    while(input != 'exit')
-      menu()
-      input = gets.strip
-      selection(input)
-    end
-
-    puts "That's the end!!"
-  end
-
-  def menu
-    Book.display_menu()
-  end
+  # def menu
+  #   Book.display_menu()
+  # end
 
   def menu
     input = nil
