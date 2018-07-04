@@ -35,6 +35,7 @@ class BestBooks::Books
   end
 
   # def display_menu
+  #   puts "displaying menu"
   # end
 
 end

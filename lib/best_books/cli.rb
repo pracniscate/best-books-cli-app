@@ -3,6 +3,7 @@ class BestBooks::CLI
   def call
     welcome
     editors_or_readers
+    # new_books
     menu
     goodbye
   end
@@ -12,6 +13,7 @@ class BestBooks::CLI
   end
 
   def editors_or_readers
+    # ? implement input 'list' to be able to switch to another list w/o typing it expicitly
     input = nil
     puts "Which list would you like to access? Type 'editors' or 'readers'."
     input = gets.strip.downcase
@@ -22,26 +24,29 @@ class BestBooks::CLI
     when "readers"
       show_list("readers")
     else
-      puts "Didn't get that! Please choose between 'editors' or 'readers', and you will be presented with a book list."
+      puts "Didn't get that! Please choose between 'editors' or 'readers'."
     end
   end
 
   def show_list(list)
+    # make sure this returns a list
+    # wrong number of arguments (given 0, expected 1) (ArgumentError)
     if list == "editors"
       puts "Best Novels of All Time by Our Editors:"
       BestBooks::Books.editors.each do |book|
-        puts "#{book.title} by #{book.author} - #{the_book.price}"
+        puts "#{book.title} by #{book.author} - #{book.price}"
       end
     elsif list == "readers"
       puts "Top-choice Books by Our Customers:"
       BestBooks::Books.readers.each do |book|
-        puts "#{book.title} by #{book.author} - #{the_book.price}"
+        puts "#{book.title} by #{book.author} - #{book.price}"
       end
     end
   end
 
   def new_books
     # scrape books from the website
+    # undefined method `scrape_books' for BestBooks::Scraper:Class (NoMethodError)
     books = BestBooks::Scraper.scrape_books
     # then, create an array of books
     BestBooks::Books.create_from_collection(book_array)
@@ -49,20 +54,20 @@ class BestBooks::CLI
 
   # give books attributes
 
-  # def play
-  #   input = nil
-  #
-  #   while(input != 'exit')
-  #     menu()
-  #     input = gets.strip
-  #     selection(input)
-  #   end
-  #
-  #   puts "That's the end!!"
-  # end
+  def play
+    input = nil
+
+    while(input != 'exit')
+      menu()
+      input = gets.strip
+      selection(input)
+    end
+
+    puts "That's the end!!"
+  end
 
   # def menu
-  #   Book.display_menu()
+  #   BestBooks::Books.display_menu()
   # end
 
   def menu
@@ -71,13 +76,14 @@ class BestBooks::CLI
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
       input = gets.strip.downcase
 
-      # wire up the menu with conditional logic to work with the arrays of books
       if input.to_i > 0
-        the_book = @books[input.to_i - 1]
-        puts "#{the_book.title} by #{the_book.author} - #{the_book.price}"
+        # show the description of the chosen book.
+        # scrape the description
       elsif input == "list"
+        # ? implement input 'list' to be able to switch to another list w/o typing it expicitly
         editors_or_readers
       else
+        # make sure this line doesn't print if 'exit'
         puts "This is confusing. Try again."
       end
     end
