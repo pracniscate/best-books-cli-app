@@ -5,7 +5,6 @@ class BestBooks::CLI
     editors_or_readers
     # new_books
     menu
-    goodbye
   end
 
   def welcome
@@ -54,42 +53,29 @@ class BestBooks::CLI
 
   # give books attributes
 
-  def play
-    input = nil
-
-    while(input != 'exit')
-      menu()
-      input = gets.strip
-      selection(input)
-    end
-
-    puts "That's the end!!"
-  end
-
   # def menu
   #   BestBooks::Books.display_menu()
   # end
 
   def menu
     input = nil
-    while input != "exit"
+
+    while(input != "exit")
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
       input = gets.strip.downcase
 
-      if input.to_i > 0
+      case input
+      when input.to_i > 0
         # show the description of the chosen book.
         # scrape the description
-      elsif input == "list"
+      when "list"
         # ? implement input 'list' to be able to switch to another list w/o typing it expicitly
         editors_or_readers
+      when "exit"
+        puts "See you soon!"
       else
-        # make sure this line doesn't print if 'exit'
         puts "This is confusing. Try again."
       end
     end
-  end
-
-  def goodbye
-    puts "See you soon! Enjoy reading your book."
   end
 end
