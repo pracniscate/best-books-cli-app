@@ -14,6 +14,8 @@ class BestBooks::Books
 
   def self.create_from_collection(book_array)
     book_array.each {|book| self.new(book)}
+    book_array.save
+    book_array
   end
 
   def attributes(attribute_hash)

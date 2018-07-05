@@ -3,7 +3,6 @@ class BestBooks::CLI
   def call
     welcome
     editors_or_readers
-    # new_books
     menu
   end
 
@@ -43,13 +42,13 @@ class BestBooks::CLI
     end
   end
 
-  def new_books
-    # scrape books from the website
-    # undefined method `scrape_books' for BestBooks::Scraper:Class (NoMethodError)
-    books = BestBooks::Scraper.scrape_books
-    # then, create an array of books
-    BestBooks::Books.create_from_collection(book_array)
-  end
+  # def new_books
+  #   # scrape books from the website
+  #   # undefined method `scrape_books' for BestBooks::Scraper:Class (NoMethodError)
+  #   books = BestBooks::Scraper.scrape_books
+  #   # then, create an array of books
+  #   BestBooks::Books.create_from_collection(book_array)
+  # end
 
   # give books attributes
 
