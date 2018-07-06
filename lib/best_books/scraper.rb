@@ -1,23 +1,23 @@
 class BestBooks::Scraper
   attr_accessor :doc
 
-  def initialize(url = "https://www.bookdepository.com/bestbooksever")
-    # include customers' list: https://www.bookdepository.com/yourbestbooksever
-    @doc = Nokogiri::HTML(open(url))
-
-    # binding.pry
+  def initialize
   end
 
-  def scrape_books
+  def self.scrape_books
+    url = "https://www.bookdepository.com/bestbooksever"
+    # include customers' list: https://www.bookdepository.com/yourbestbooksever
+    doc = Nokogiri::HTML(open(url))
     # make sure the text does not include whitespace
     doc.css("div.item-info").each do |book|
-      book = BestBooks::Books.new
+      new_book = BestBooks::Books.new
+      # binding.pry
 
-      title = book.css(".title").text,
-      author = book.css(".author").text,
-      price = book.css("div.price-wrap .price").text
+      new_book.title = book.css(".title").text.gsub(/\n/, "").gsub("  ", "")
+      # if new_book.title = index[0]
+      new_book.author = book.css(".author").text.gsub(/\n/, "").gsub("  ", "")
+      new_book.price = book.css("div.price-wrap .price").text
 
-      book.save
     end
   end
 end

@@ -1,6 +1,8 @@
 class BestBooks::CLI
 
   def call
+    BestBooks::Scraper.scrape_books
+    binding.pry
     welcome
     editors_or_readers
     menu

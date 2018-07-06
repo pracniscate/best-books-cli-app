@@ -3,12 +3,7 @@ class BestBooks::Books
 
   @@all = []
 
-  def initialize(obj)
-    @title = title
-    @author = author
-    @price = price
-    @url = url
-
+  def initialize
     @@all << self
   end
 
