@@ -1,5 +1,5 @@
 class BestBooks::Books
-  attr_accessor :title, :author, :price, :url
+  attr_accessor :title, :author, :price, :url, :list
 
   @@all = []
 
@@ -24,7 +24,8 @@ class BestBooks::Books
 
   # separate two different lists and keep track of them
   def self.editors
-    @@all.select {|book| book.list == "editors"}
+    # binding.pry
+    @@all.find {|book| book.list == "editors"}
   end
 
   def self.readers

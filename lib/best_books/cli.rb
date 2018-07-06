@@ -2,7 +2,6 @@ class BestBooks::CLI
 
   def call
     BestBooks::Scraper.scrape_books
-    binding.pry
     welcome
     editors_or_readers
     menu
@@ -30,7 +29,7 @@ class BestBooks::CLI
 
   def show_list(list)
     # make sure this returns a list
-    # wrong number of arguments (given 0, expected 1) (ArgumentError)
+    # undefined method 'each' for nil:NilClass
     if list == "editors"
       puts "Best Novels of All Time by Our Editors:"
       BestBooks::Books.editors.each do |book|
