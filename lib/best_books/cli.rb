@@ -28,34 +28,20 @@ class BestBooks::CLI
   end
 
   def show_list(list)
-    # make sure this returns a list
-    # undefined method 'each' for nil:NilClass
     if list == "editors"
       puts "Best Novels of All Time by Our Editors:"
-      BestBooks::Books.editors.each do |book|
-        puts "#{book.title} by #{book.author} - #{book.price}"
+      BestBooks::Books.editors.each.with_index(1) do |book, index|
+        puts "#{index}. #{book.title} by #{book.author} - #{book.price}"
       end
     elsif list == "readers"
       puts "Top-choice Books by Our Customers:"
-      BestBooks::Books.readers.each do |book|
-        puts "#{book.title} by #{book.author} - #{book.price}"
+      BestBooks::Books.readers.each.with_index(1) do |book, index|
+        puts "#{index}. #{book.title} by #{book.author} - #{book.price}"
       end
     end
   end
 
-  # def new_books
-  #   # scrape books from the website
-  #   # undefined method `scrape_books' for BestBooks::Scraper:Class (NoMethodError)
-  #   books = BestBooks::Scraper.scrape_books
-  #   # then, create an array of books
-  #   BestBooks::Books.create_from_collection(book_array)
-  # end
-
   # give books attributes
-
-  # def menu
-  #   BestBooks::Books.display_menu()
-  # end
 
   def menu
     input = nil
