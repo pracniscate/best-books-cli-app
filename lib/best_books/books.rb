@@ -24,12 +24,11 @@ class BestBooks::Books
 
   # separate two different lists and keep track of them
   def self.editors
-    # binding.pry
-    @@all.find {|book| book.list == "editors"}
+    @@all.each {|book| book.list == "editors"}
   end
 
   def self.readers
-    @@all.select {|book| book.list == "readers"}
+    @@all.each {|book| book.list == "readers"}
   end
 
   # def display_menu
