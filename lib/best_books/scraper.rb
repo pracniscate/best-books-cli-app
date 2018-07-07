@@ -16,7 +16,10 @@ class BestBooks::Scraper
       new_book.title = book.css(".title").text.gsub(/\n/, "").gsub("  ", "")
       # if new_book.title = index[0]
       new_book.author = book.css(".author").text.gsub(/\n/, "").gsub("  ", "")
-      new_book.price = book.css("div.price-wrap .price").text
+      # remove the span element attached to the price
+      remove_span = book.css("div.price-wrap .price")
+      remove_span.children.select { |c| c.remove if c.name == "span" }
+      new_book.price = book.css("div.price-wrap .price").text.gsub(/\n/, "").gsub("  ", "")
 
     end
   end
