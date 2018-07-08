@@ -1,5 +1,5 @@
 class BestBooks::Books
-  attr_accessor :title, :author, :price, :url, :list
+  attr_accessor :title, :author, :price, :url, :summary, :list
 
   @@all = []
 
@@ -13,9 +13,9 @@ class BestBooks::Books
     book_array
   end
 
-  def attributes(attribute_hash)
+  def include_summaries(summary_hash)
     # mass assign attributes
-    attribute_hash.each {|key, value| self.send(("#{key}="), value)}
+    summary_hash.each {|key, value| self.send(("#{key}="), value)}
   end
 
   def self.all

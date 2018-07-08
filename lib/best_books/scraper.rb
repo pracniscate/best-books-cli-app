@@ -14,13 +14,23 @@ class BestBooks::Scraper
       # binding.pry
 
       new_book.title = book.css(".title").text.gsub(/\n/, "").gsub("  ", "")
-      # if new_book.title = index[0]
+      new_book.url = book.css("a").attr("href").value
       new_book.author = book.css(".author").text.gsub(/\n/, "").gsub("  ", "")
       # remove the span element attached to the price
       remove_span = book.css("div.price-wrap .price")
       remove_span.children.select { |c| c.remove if c.name == "span" }
       new_book.price = book.css("div.price-wrap .price").text.gsub(/\n/, "").gsub("  ", "")
-
     end
+  end
+
+  def self.scrape_summary(book_url)
+    # renaming the book url variable for more convenient access
+    new_book.url = book_url
+    summary_page = Nokogiri::HTML(open(book_url))
+    book_summaries = {}
+
+    book_summaries[:summary] = summary_page.css(".item-excerpt trunc").text
+
+    book_summaries
   end
 end

@@ -41,7 +41,16 @@ class BestBooks::CLI
     end
   end
 
-  # give books attributes
+  def summaries
+    BestBooks::Books.editors.each do |book|
+      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
+      book.include_summaries(summaries)
+    end
+    BestBooks::Books.readers.each do |book|
+      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
+      book.include_summaries(summaries)
+    end
+  end
 
   def menu
     input = nil
