@@ -12,18 +12,18 @@ class BestBooks::CLI
   end
 
   def editors_or_readers
-    # ? implement input 'list' to be able to switch to another list w/o typing it expicitly
-    input = nil
-    puts "Which list would you like to access? Type 'editors' or 'readers'."
-    input = gets.strip.downcase
-
-    case input
-    when "editors"
+    prompt = "> "
+    print prompt 
+    
+    user_input = nil 
+    until ["editors", "readers"].include? user_input do 
+      puts "Which list would you like to access? Type 'editors' or 'readers'."
+      user_input = gets.strip.downcase 
+    end 
+    if user_input == "editors"
       show_list("editors")
-    when "readers"
+    elsif user_input == "readers"
       show_list("readers")
-    else
-      puts "Didn't get that! Please choose between 'editors' or 'readers'."
     end
   end
 
@@ -53,8 +53,10 @@ class BestBooks::CLI
   end
 
   def menu
+    prompt = "> "
+    print prompt 
+    
     input = nil
-
     while(input != "exit")
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
       input = gets.strip.downcase
@@ -62,7 +64,6 @@ class BestBooks::CLI
       case input
       when input.to_i > 0
         # show the description of the chosen book.
-        # scrape the description
       when "list"
         # ? implement input 'list' to be able to switch to another list w/o typing it expicitly
         editors_or_readers
