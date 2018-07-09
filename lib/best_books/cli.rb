@@ -2,9 +2,22 @@ class BestBooks::CLI
 
   def call
     BestBooks::Scraper.scrape_books
+    add_book_summaries
     welcome
     editors_or_readers
     menu
+  end
+
+  def add_book_summaries
+    BestBooks::Books.editors.each do |book|
+      # undefined method `book_url' for #<BestBooks::Books:0x00000002bc8890> (NoMethodError)
+      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
+      BestBooks::Books.include_summaries(summaries)
+    end
+    BestBooks::Books.readers.each do |book|
+      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
+      BestBooks::Books.include_summaries(summaries)
+    end
   end
 
   def welcome
@@ -41,16 +54,6 @@ class BestBooks::CLI
     end
   end
 
-  def summaries
-    BestBooks::Books.editors.each do |book|
-      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
-      book.include_summaries(summaries)
-    end
-    BestBooks::Books.readers.each do |book|
-      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
-      book.include_summaries(summaries)
-    end
-  end
 
   def menu
     prompt = "> "

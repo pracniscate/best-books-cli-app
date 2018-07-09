@@ -7,6 +7,11 @@ class BestBooks::Books
     @@all << self
   end
 
+  def self.include_summaries(summary_hash)
+    # mass assign attributes
+    summary_hash.each {|key, value| self.send(("#{key}="), value)}
+  end
+
   def self.all
     @@all
   end
