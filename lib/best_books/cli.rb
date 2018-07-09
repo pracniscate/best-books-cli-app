@@ -2,56 +2,39 @@ class BestBooks::CLI
 
   def call
     BestBooks::Scraper.scrape_books
-    add_book_summaries
     welcome
-    editors_or_readers
+    get_user_input
     menu
   end
 
-  def add_book_summaries
-    BestBooks::Books.editors.each do |book|
-      # undefined method `book_url' for #<BestBooks::Books:0x00000002bc8890> (NoMethodError)
-      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
-      BestBooks::Books.include_summaries(summaries)
-    end
-    BestBooks::Books.readers.each do |book|
-      summaries = BestBooks::Scraper.scrape_summary(book.book_url)
-      BestBooks::Books.include_summaries(summaries)
-    end
+  def show_individual_book(book_id)
+    summary = BestBooks::Scraper.scrape_summary(book_id)
+    puts "hello"
   end
 
   def welcome
     puts "Welcome to Best Books! Here you can look at two different lists of the best books of all time: one created by the editors on Book Depository, and the other one created by readers like you. Hope you find a good read!"
   end
 
-  def editors_or_readers
+  def get_user_input
     prompt = "> "
     print prompt
 
     user_input = nil
-    until ["editors", "readers"].include? user_input do
-      puts "Which list would you like to access? Type 'editors' or 'readers'."
+    until ["yes", "no"].include? user_input do
+      puts "Would you like to see some books?"
       user_input = gets.strip.downcase
     end
-    if user_input == "editors"
-      show_list("editors")
-    elsif user_input == "readers"
-      show_list("readers")
+    if user_input == "yes"
+      show_list
     end
   end
 
-  def show_list(list)
-    if list == "editors"
+  def show_list
       puts "Best Novels of All Time by Our Editors:"
-      BestBooks::Books.editors.each.with_index(1) do |book, index|
+      BestBooks::Books.all.each.with_index(1) do |book, index|
         puts "#{index}. #{book.title} by #{book.author} - #{book.price}"
       end
-    elsif list == "readers"
-      puts "Top-choice Books by Our Customers:"
-      BestBooks::Books.readers.each.with_index(1) do |book, index|
-        puts "#{index}. #{book.title} by #{book.author} - #{book.price}"
-      end
-    end
   end
 
 
@@ -63,17 +46,14 @@ class BestBooks::CLI
     while(input != "exit")
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
       input = gets.strip.downcase
-
-      case input
-      when input.to_i > 0
-        # show the description of the chosen book
-        book_summaries[input.to_i - 1]
-      when "list"
-        editors_or_readers
-      when "exit"
-        puts "See you soon!"
-      else
-        puts "This is confusing. Try again."
+        if input.to_i > 0
+          show_individual_book(input)
+          # show the description of the chosen book
+          book_summaries[input.to_i - 1]
+        elsif input == "exit"
+          puts "See you soon!"
+        else
+          puts "This is confusing. Try again."
       end
     end
   end

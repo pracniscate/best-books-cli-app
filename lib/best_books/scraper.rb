@@ -22,6 +22,13 @@ class BestBooks::Scraper
     end
   end
 
+  def self.editors_books
+
+  end
+
+  def self.readers_books
+  end
+
   def self.scrape_summary(book_url)
     # open BASE_URL first, then add each book's unique url
     binding.pry
