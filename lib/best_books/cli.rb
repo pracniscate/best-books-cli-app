@@ -13,13 +13,13 @@ class BestBooks::CLI
 
   def editors_or_readers
     prompt = "> "
-    print prompt 
-    
-    user_input = nil 
-    until ["editors", "readers"].include? user_input do 
+    print prompt
+
+    user_input = nil
+    until ["editors", "readers"].include? user_input do
       puts "Which list would you like to access? Type 'editors' or 'readers'."
-      user_input = gets.strip.downcase 
-    end 
+      user_input = gets.strip.downcase
+    end
     if user_input == "editors"
       show_list("editors")
     elsif user_input == "readers"
@@ -54,8 +54,8 @@ class BestBooks::CLI
 
   def menu
     prompt = "> "
-    print prompt 
-    
+    print prompt
+
     input = nil
     while(input != "exit")
       puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
@@ -63,9 +63,9 @@ class BestBooks::CLI
 
       case input
       when input.to_i > 0
-        # show the description of the chosen book.
+        # show the description of the chosen book
+        book_summaries[input.to_i - 1]
       when "list"
-        # ? implement input 'list' to be able to switch to another list w/o typing it expicitly
         editors_or_readers
       when "exit"
         puts "See you soon!"
