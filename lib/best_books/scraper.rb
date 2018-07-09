@@ -1,17 +1,15 @@
 class BestBooks::Scraper
-  attr_accessor :doc
 
-  def initialize
-  end
+  BASE_URL = "https://www.bookdepository.com"
+  EDITORS_URL = "#{BASE_URL}/bestbooksever"
+  READERS_URL = "#{BASE_URL}/yourbestbooksever"
 
   def self.scrape_books
-    url = "https://www.bookdepository.com/bestbooksever"
-    # include customers' list: https://www.bookdepository.com/yourbestbooksever
-    doc = Nokogiri::HTML(open(url))
-    # make sure the text does not include whitespace
+    doc = Nokogiri::HTML(open(BASE_URL))
+    # if user typed in 'editors', go to EDITORS_URL
+    # if user typed in 'readers', go to READERS_URL
     doc.css("div.item-info").each do |book|
       new_book = BestBooks::Books.new
-      # binding.pry
 
       new_book.title = book.css(".title").text.gsub(/\n/, "").gsub("  ", "")
       new_book.url = book.css("a").attr("href").value
@@ -24,9 +22,8 @@ class BestBooks::Scraper
   end
 
   def self.scrape_summary(book_url)
-    # renaming the book url variable for more convenient access
-    new_book.url = book_url
-    summary_page = Nokogiri::HTML(open(book_url))
+    binding.pry
+    book_url = self.scrape_books.new_book.url
     book_summaries = {}
 
     book_summaries[:summary] = summary_page.css(".item-excerpt trunc").text
