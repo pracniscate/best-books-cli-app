@@ -24,11 +24,13 @@ class BestBooks::Scraper
     # rescue OpenURI::HTTPError
     #   # bypass error
     # end
+    # establish an empty array of book ids
+    $book_ids = []
+    # scrape the url of book summaries
     summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/One-Hundred-Years-Solitude-Gabriel-Garcia-Marquez/9780141184999"))
-    book_summaries = {}
-    binding.pry
-    book_summaries[:summary] = summary_page.css("div.item-excerpt.trunc").text.gsub(/\n/, "").gsub("  ", "").split("show more")
-
-    book_summaries
+    # binding.pry
+    $book_ids = summary_page.css("div.item-excerpt.trunc").text.gsub(/\n/, "").gsub("  ", "").split("show more")
+    # shovel the scraped & parsed summaries into the array
+    $book_ids << book_id
   end
 end

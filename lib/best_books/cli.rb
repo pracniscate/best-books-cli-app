@@ -47,7 +47,7 @@ class BestBooks::CLI
       input = gets.strip.downcase
         if input.to_i > 0
           show_individual_book(input)
-          book_summaries[input.to_i - 1]
+          $book_ids[input.to_i - 1]
         elsif input == "exit"
           puts "See you soon!"
         else
