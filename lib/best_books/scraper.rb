@@ -19,14 +19,15 @@ class BestBooks::Scraper
 
   def self.scrape_summary(book_id)
     # fix 404 Not Found (OpenURI::HTTPError)
-    begin
-      summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/bestbooksever#{@url}"))
-    rescue OpenURI::HTTPError
-      # bypass error
-    end
+    # begin
+    #   summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/bestbooksever#{@url}"))
+    # rescue OpenURI::HTTPError
+    #   # bypass error
+    # end
+    summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/One-Hundred-Years-Solitude-Gabriel-Garcia-Marquez/9780141184999"))
     book_summaries = {}
-
-    book_summaries[:summary] = summary_page.css(".item-excerpt trunc").text
+    binding.pry
+    book_summaries[:summary] = summary_page.css("div.item-excerpt.trunc").text.gsub(/\n/, "").gsub("  ", "").split("show more")
 
     book_summaries
   end
