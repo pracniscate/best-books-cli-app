@@ -1,13 +1,7 @@
 class BestBooks::Scraper
 
-  BASE_URL = "https://www.bookdepository.com"
-  EDITORS_URL = "#{BASE_URL}/bestbooksever"
-  READERS_URL = "#{BASE_URL}/yourbestbooksever"
-
   def self.scrape_books
-    doc = Nokogiri::HTML(open(BASE_URL))
-    # if user typed in 'editors', go to EDITORS_URL
-    # if user typed in 'readers', go to READERS_URL
+    doc = Nokogiri::HTML(open("https://www.bookdepository.com/bestbooksever"))
     doc.css("div.item-info").each do |book|
       new_book = BestBooks::Books.new
 
@@ -18,22 +12,15 @@ class BestBooks::Scraper
       remove_span.children.select { |c| c.remove if c.name == "span" }
       new_book.price = book.css("div.price-wrap .price").text.gsub(/\n/, "").gsub("  ", "")
       new_book.url = book.css("a").attr("href").value
-      # => "/Eleanor-Oliphant-is-Completely-Fine-Gail-Honeyman/9780008172145?ref=grid-view"
+      # save this url as an instance variable to later interpolate it into each book's summary address in scrape_summary method
+      @url = new_book.url
     end
   end
 
-  def self.editors_books
-
-  end
-
-  def self.readers_books
-  end
-
-  def self.scrape_summary(book_url)
-    # open BASE_URL first, then add each book's unique url
+  def self.scrape_summary(book_id)
     binding.pry
-    summary_page = Nokogiri::HTML(open(book_url))
-    book_url = self.scrape_books.new_book.url
+    # fix 404 Not Found (OpenURI::HTTPError)
+    summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/bestbooksever#{@url}"))
     book_summaries = {}
 
     book_summaries[:summary] = summary_page.css(".item-excerpt trunc").text

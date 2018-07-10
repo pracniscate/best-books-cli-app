@@ -31,12 +31,11 @@ class BestBooks::CLI
   end
 
   def show_list
-      puts "Best Novels of All Time by Our Editors:"
-      BestBooks::Books.all.each.with_index(1) do |book, index|
-        puts "#{index}. #{book.title} by #{book.author} - #{book.price}"
-      end
+    puts "Best Novels of All Time by Our Editors:"
+    BestBooks::Books.all.each.with_index(1) do |book, index|
+      puts "#{index}. #{book.title} by #{book.author} - #{book.price}"
+    end
   end
-
 
   def menu
     prompt = "> "
@@ -48,7 +47,6 @@ class BestBooks::CLI
       input = gets.strip.downcase
         if input.to_i > 0
           show_individual_book(input)
-          # show the description of the chosen book
           book_summaries[input.to_i - 1]
         elsif input == "exit"
           puts "See you soon!"
