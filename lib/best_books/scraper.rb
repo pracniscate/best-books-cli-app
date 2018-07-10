@@ -18,9 +18,12 @@ class BestBooks::Scraper
   end
 
   def self.scrape_summary(book_id)
-    binding.pry
     # fix 404 Not Found (OpenURI::HTTPError)
-    summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/bestbooksever#{@url}"))
+    begin
+      summary_page = Nokogiri::HTML(open("https://www.bookdepository.com/bestbooksever#{@url}"))
+    rescue OpenURI::HTTPError
+      # bypass error
+    end
     book_summaries = {}
 
     book_summaries[:summary] = summary_page.css(".item-excerpt trunc").text
