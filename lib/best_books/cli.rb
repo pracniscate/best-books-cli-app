@@ -13,7 +13,7 @@ class BestBooks::CLI
   end
 
   def welcome
-    puts "Welcome to Best Books! Here you can look at two different lists of the best books of all time: one created by the editors on Book Depository, and the other one created by readers like you. Hope you find a good read!"
+    puts "Welcome to Best Books! Here you can find your next favorite book to read from a list compiled by the editors at bookdepository.com and then, upon your selection, you can read a short summary of that book."
   end
 
   def get_user_input
@@ -22,10 +22,14 @@ class BestBooks::CLI
 
     user_input = nil
     until ["yes", "no"].include? user_input do
-      puts "Would you like to see some books?"
+      puts "Ready to find your best book? (yes/no)"
       user_input = gets.strip.downcase
     end
     if user_input == "yes"
+      show_list
+    elsif user_input == "no"
+      puts "I'm sorry. Reading is GOOD for you. Showing you the list anyway."
+      sleep 2.5
       show_list
     end
   end

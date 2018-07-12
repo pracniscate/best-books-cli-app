@@ -16,7 +16,6 @@ class BestBooks::Scraper
   end
 
   def self.scrape_summary(book_id)
-    # fix 404 Not Found (OpenURI::HTTPError)
     url = BestBooks::Books.all[book_id.to_i - 1].url # specific book url
     summary_page = Nokogiri::HTML(open("https://www.bookdepository.com#{url}"))
 
