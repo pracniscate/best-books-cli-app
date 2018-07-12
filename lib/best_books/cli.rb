@@ -47,7 +47,7 @@ class BestBooks::CLI
 
     input = nil
     while(input != "exit")
-      puts "Enter the number of the book you'd like to read the description of or type 'list' to choose the list again or type 'exit':"
+      puts "Enter the number of the book you'd like to read the description of or type 'exit':"
       input = gets.strip.downcase
         if input.to_i > 0
           show_individual_book(input)
