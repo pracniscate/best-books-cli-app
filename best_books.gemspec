@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Lorena Giddens'"]
   spec.email         = ["'lorena.giddens@outlook.com'"]
 
-  spec.summary       = %q{This gem allows you to search for best books in a list compiled by editors or another list compiled by readers.}
+  spec.summary       = %q{Search for best books and read their summaries.}
   spec.homepage      = "https://github.com/pracniscate/best-books-cli-app.git"
   spec.license       = "MIT"
 
