@@ -9,7 +9,7 @@ class BestBooks::CLI
 
   def show_individual_book(book_id)
     summary = BestBooks::Scraper.scrape_summary(book_id)
-    puts "hello"
+    puts summary
   end
 
   def welcome
@@ -47,7 +47,6 @@ class BestBooks::CLI
       input = gets.strip.downcase
         if input.to_i > 0
           show_individual_book(input)
-          $book_ids[input.to_i - 1]
         elsif input == "exit"
           puts "See you soon!"
         else

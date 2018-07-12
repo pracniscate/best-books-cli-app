@@ -18,15 +18,9 @@ class BestBooks::Scraper
   def self.scrape_summary(book_id)
     # fix 404 Not Found (OpenURI::HTTPError)
     url = BestBooks::Books.all[book_id.to_i - 1].url # specific book url
-    binding.pry
     summary_page = Nokogiri::HTML(open("https://www.bookdepository.com#{url}"))
 
-    # establish an empty array of book ids
-    $book_ids = []
-    # scrape the url of book summaries
-    # binding.pry
-    $book_ids = summary_page.css("div.item-excerpt.trunc").text.gsub(/\n/, "").gsub("  ", "").split("show more")
-    # shovel the scraped & parsed summaries into the array
-    $book_ids << book_id
+    summary_list = {}
+    summary_list[:summary]  = summary_page.css("div.item-excerpt.trunc").text.gsub(/\n/, "").gsub("  ", "").split("show more")
   end
 end
