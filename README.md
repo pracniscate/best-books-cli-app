@@ -1,8 +1,6 @@
 # BestBooks
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/best_books`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to a Ruby gem that lists best novels of all time, as presented by the editors on Book Depository. You will be able to see the whole list of books and read the short summary of your chosen book.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To run the code, simply clone it from GitHub with `git clone`, change to the new directory with `cd`, and finally, type in `./bin/best-books` to start the application. You will then be prompted to input a yes or no question after which you will be able to view the numbered list. If you desire to read a summary, input the number of the book and you will be presented with it.
 
 ## Development
 
