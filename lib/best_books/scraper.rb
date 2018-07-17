@@ -17,6 +17,7 @@ class BestBooks::Scraper
 
   def self.scrape_summary(book_id)
     url = BestBooks::Books.all[book_id.to_i - 1].url # specific book url
+    puts "Loading the summary of book ##{book_id} for you..."
     summary_page = Nokogiri::HTML(open("https://www.bookdepository.com#{url}"))
 
     summary_list = {}

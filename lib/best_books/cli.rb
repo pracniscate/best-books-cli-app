@@ -8,8 +8,7 @@ class BestBooks::CLI
   end
 
   def show_individual_book(book_id)
-    summary = BestBooks::Scraper.scrape_summary(book_id)
-    puts summary
+    puts BestBooks::Books.all[book_id.to_i - 1].summary(book_id)
   end
 
   def welcome
