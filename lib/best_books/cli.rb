@@ -49,7 +49,7 @@ class BestBooks::CLI
     while(input != "exit")
       puts "Enter the number of the book you'd like to read the description of or type 'exit':"
       input = gets.strip.downcase
-        if input.to_i > 0
+        if input.to_i.between?(1, BestBooks::Books.all.size) # check if there is such a book
           show_individual_book(input)
         elsif input == "exit"
           puts "See you soon!"
